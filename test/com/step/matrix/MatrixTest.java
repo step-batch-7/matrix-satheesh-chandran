@@ -37,4 +37,17 @@ public class MatrixTest {
 
     assertArrayEquals(expected.getMatrix(), matrix1.add(matrix2).getMatrix());
   }
+
+  @Test
+  public void shouldSubtractTwoMatrices() {
+    int[][] numbers1 = { { 1, 1 }, { 2, 2 } };
+    Matrix matrix1 = new Matrix(numbers1);
+
+    int[][] numbers2 = { { 1, 1 }, { 2, 2 } };
+    Matrix matrix2 = new Matrix(numbers2);
+    int[][] expectedNum = { { 0, 0 }, { 0, 0 } };
+    Matrix expected = new Matrix(expectedNum);
+
+    assertArrayEquals(expected.getMatrix(), matrix1.subtract(matrix2).getMatrix());
+  }
 }
