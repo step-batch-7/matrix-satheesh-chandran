@@ -2,6 +2,7 @@ package com.step.matrix;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -48,6 +49,34 @@ public class MatrixTest {
     int[][] expectedNum = { { 0, 0 }, { 0, 0 } };
     Matrix expected = new Matrix(expectedNum);
 
-    assertArrayEquals(expected.getMatrix(), matrix1.subtract(matrix2).getMatrix());
+    assertArrayEquals(
+      expected.getMatrix(),
+      matrix1.subtract(matrix2).getMatrix()
+    );
+  }
+
+  @Test
+  public void shouldMultiplyMatrices() {
+    int[][] numbers1 = { { 1, 1 }, { 2, 2 } };
+    Matrix matrix1 = new Matrix(numbers1);
+
+    int[][] numbers2 = { { 1, 1 }, { 2, 2 } };
+    Matrix matrix2 = new Matrix(numbers2);
+    int[][] expectedNum = { { 3, 3 }, { 6, 6 } };
+    Matrix expected = new Matrix(expectedNum);
+    assertArrayEquals(
+      expected.getMatrix(),
+      matrix1.multiply(matrix2).getMatrix()
+    );
+  }
+
+  @Test
+  public void shouldGiveNullIfMultiplicationIsNotPossible() {
+    int[][] numbers1 = { { 1, 1 }, { 2, 2 } };
+    Matrix matrix1 = new Matrix(numbers1);
+
+    int[][] numbers2 = { { 1 } };
+    Matrix matrix2 = new Matrix(numbers2);
+    assertNull(matrix1.multiply(matrix2));
   }
 }
