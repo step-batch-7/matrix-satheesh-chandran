@@ -2,6 +2,8 @@ package com.step.matrix;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -12,8 +14,15 @@ public class MatrixTest {
     int[][] numbers = { { 1, 1 }, { 2, 2 } };
     Matrix matrix = new Matrix(numbers);
     int[][] expected = { { 1, 1 }, { 2, 2 } };
-
     assertArrayEquals(expected, matrix.getMatrix());
+  }
+
+  @Test
+  public void shouldGiveStringRepresentation() {
+    int[][] numbers = { { 1, 1 }, { 2, 2 } };
+    Matrix matrix = new Matrix(numbers);
+    StringBuilder expected = new StringBuilder("1  1  \n2  2  \n");
+    assertEquals(expected.toString(), matrix.display().toString());
   }
 
   @Test
