@@ -1,3 +1,4 @@
+rm -rf out/*;
 echo "Compiling Matrix...\n";
 javac -d out src/com/step/matrix/Matrix.java;
 

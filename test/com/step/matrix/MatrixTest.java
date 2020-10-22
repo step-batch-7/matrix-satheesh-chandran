@@ -30,7 +30,6 @@ public class MatrixTest {
   public void shouldAddTwoMatrices() {
     int[][] numbers1 = { { 1, 1 }, { 2, 2 } };
     Matrix matrix1 = new Matrix(numbers1);
-
     int[][] numbers2 = { { 1, 1 }, { 2, 2 } };
     Matrix matrix2 = new Matrix(numbers2);
     int[][] expectedNum = { { 2, 2 }, { 4, 4 } };
@@ -73,9 +72,15 @@ public class MatrixTest {
   public void shouldGiveNullIfMultiplicationIsNotPossible() {
     int[][] numbers1 = { { 1, 1 }, { 2, 2 } };
     Matrix matrix1 = new Matrix(numbers1);
-
     int[][] numbers2 = { { 1 } };
     Matrix matrix2 = new Matrix(numbers2);
     assertNull(matrix1.multiply(matrix2));
+  }
+
+  @Test
+  public void shouldGiveTheDeterminant() {
+    int[][] numbers = { { 2, -3, 1 }, { 2, 0, -1 }, { 1, 4, 5 } };
+    Matrix matrix = new Matrix(numbers);
+    assertEquals(matrix.determinant(), 49, 0.0);
   }
 }

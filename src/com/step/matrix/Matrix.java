@@ -4,10 +4,12 @@ class Matrix {
   private int[][] matrix;
   private int rowCount;
   private int colCount;
+  private double det;
 
   public Matrix(int[][] matrix) {
     this.rowCount = matrix.length;
     this.colCount = matrix[0].length;
+    this.det = 0;
     this.matrix = matrix.clone();
     for (int index = 0; index < this.matrix.length; index++) {
       this.matrix[index] = this.matrix[index].clone();
@@ -78,5 +80,28 @@ class Matrix {
       builder.append("\n");
     }
     return builder;
+  }
+
+  private Matrix createMatrix(int rowCount) {
+    int[][] newMatrix = new int[this.rowCount - 1][this.rowCount - 1];
+    for (int rowPos = 1; rowPos < this.rowCount; rowPos++) {
+      for (int colPos = 0; colPos < this.rowCount; colPos++) {
+        int number = this.matrix[rowPos][colPos];
+        int[] row = newMatrix[rowPos - 1];
+        if (colPos < rowCount) row[colPos] = number;
+        if (colPos > rowCount) row[colPos - 1] = number;
+      }
+    }
+    return new Matrix(newMatrix);
+  }
+
+  public double determinant() {
+    if (this.rowCount == 1) return this.matrix[0][0];
+    for (int rowCount = 0; rowCount < this.rowCount; rowCount++) {
+      int sign = rowCount % 2 == 0 ? 1 : -1;
+      Matrix newMatrix = this.createMatrix(rowCount);
+      this.det += sign * this.matrix[0][rowCount] * newMatrix.determinant();
+    }
+    return this.det;
   }
 }
