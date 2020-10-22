@@ -8,13 +8,16 @@ class Matrix {
   public Matrix(int[][] matrix) {
     this.rowCount = matrix.length;
     this.colCount = matrix[0].length;
-    this.matrix = matrix;
+    this.matrix = matrix.clone();
+    for (int index = 0; index < this.matrix.length; index++) {
+      this.matrix[index] = this.matrix[index].clone();
+    }
   }
 
   public int[][] getMatrix() {
-    int[][] parent = new int[this.rowCount][this.colCount];
-    for (int index = 0; index < this.rowCount; index++) {
-      parent[index] = this.matrix[index].clone();
+    int[][] parent = this.matrix.clone();
+    for (int index = 0; index < parent.length; index++) {
+      parent[index] = parent[index].clone();
     }
     return parent;
   }
