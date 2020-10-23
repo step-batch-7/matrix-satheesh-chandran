@@ -2,6 +2,7 @@ package com.step.matrix;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -83,5 +84,53 @@ public class MatrixTest {
     int[][] numbers = { { 2, -3, 1 }, { 2, 0, -1 }, { 1, 4, 5 } };
     Matrix matrix = new Matrix(numbers);
     assertEquals(matrix.determinant(), 49, 0.0);
+  }
+
+  @Test
+  public void shouldGiveTrueForSameInstances() {
+    int[][] numbers = { { 2, -3, 1 }, { 2, 0, -1 }, { 1, 4, 5 } };
+    Matrix matrix = new Matrix(numbers);
+    assertTrue(matrix.equals(matrix));
+  }
+
+  @Test
+  public void shouldGiveFalseForDifferentInstances() {
+    int[][] numbers = { { 2, -3, 1 }, { 2, 0, -1 }, { 1, 4, 5 } };
+    Matrix matrix = new Matrix(numbers);
+    assertFalse(matrix.equals(new Object()));
+  }
+
+  @Test
+  public void shouldGiveFalseForNull() {
+    int[][] numbers = { { 2, -3, 1 }, { 2, 0, -1 }, { 1, 4, 5 } };
+    Matrix matrix = new Matrix(numbers);
+    assertFalse(matrix.equals(null));
+  }
+
+  @Test
+  public void shouldGiveTrueForSameMatrices() {
+    int[][] numbers1 = { { 2, -3, 1 }, { 2, 0, -1 } };
+    int[][] numbers2 = { { 2, -3, 1 }, { 2, 0, -1 } };
+    Matrix matrix1 = new Matrix(numbers1);
+    Matrix matrix2 = new Matrix(numbers2);
+    assertTrue(matrix1.equals(matrix2));
+  }
+
+  @Test
+  public void shouldGiveFalseForDifferentMatrices() {
+    int[][] numbers1 = { { 2, -3, 1 }, { 2, 0, -1 } };
+    int[][] numbers2 = { { 2, -3, 1 }, { 2, 0, 1 } };
+    Matrix matrix1 = new Matrix(numbers1);
+    Matrix matrix2 = new Matrix(numbers2);
+    assertFalse(matrix1.equals(matrix2));
+  }
+
+  @Test
+  public void shouldGiveFalseForDifferentDimensionsMatrices() {
+    int[][] numbers1 = { { 2, -3, 1 }, { 2, 0, -1 } };
+    int[][] numbers2 = { { 2, -3 } };
+    Matrix matrix1 = new Matrix(numbers1);
+    Matrix matrix2 = new Matrix(numbers2);
+    assertFalse(matrix1.equals(matrix2));
   }
 }
