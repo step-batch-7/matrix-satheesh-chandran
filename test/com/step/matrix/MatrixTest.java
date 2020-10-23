@@ -53,6 +53,7 @@ public class MatrixTest {
       expected.getMatrix(),
       matrix1.subtract(matrix2).getMatrix()
     );
+    assertEquals(expected, matrix1.subtract(matrix2));
   }
 
   @Test
@@ -68,6 +69,7 @@ public class MatrixTest {
       expected.getMatrix(),
       matrix1.multiply(matrix2).getMatrix()
     );
+    assertEquals(expected, matrix1.multiply(matrix2));
   }
 
   @Test

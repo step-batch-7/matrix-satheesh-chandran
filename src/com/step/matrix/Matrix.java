@@ -115,8 +115,8 @@ class Matrix {
     boolean dimensionsEqual =
       this.colCount == matrix.colCount && this.rowCount == matrix.rowCount;
     if (!dimensionsEqual) return false;
+    
     boolean isEqual = true;
-
     for (int rowCount = 0; rowCount < this.rowCount; rowCount++) {
       for (int colCount = 0; colCount < this.colCount; colCount++) {
         boolean isElementEqual =
