@@ -35,6 +35,7 @@ public class MatrixTest {
     int[][] expectedNum = { { 2, 2 }, { 4, 4 } };
     Matrix expected = new Matrix(expectedNum);
     assertArrayEquals(expected.getMatrix(), matrix1.add(matrix2).getMatrix());
+    assertEquals(expected, matrix1.add(matrix2));
   }
 
   @Test
