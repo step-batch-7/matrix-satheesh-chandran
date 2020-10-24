@@ -13,42 +13,31 @@ public class MatrixTest {
 
   @Test
   public void shouldGiveCloneOfTheInputArray() {
-    int[][] numbers = { { 1, 1 }, { 2, 2 } };
-    Matrix matrix = new Matrix(numbers);
+    Matrix matrix = new Matrix(new int[][] { { 1, 1 }, { 2, 2 } });
     int[][] expected = { { 1, 1 }, { 2, 2 } };
     assertArrayEquals(expected, matrix.getMatrix());
   }
 
   @Test
   public void shouldGiveStringRepresentation() {
-    int[][] numbers = { { 1, 1 }, { 2, 2 } };
-    Matrix matrix = new Matrix(numbers);
-    StringBuilder expected = new StringBuilder("1  1  \n2  2  \n");
-    assertEquals(expected.toString(), matrix.display().toString());
+    Matrix matrix = new Matrix(new int[][] { { 1, 1 }, { 2, 2 } });
+    assertEquals("1  1  \n2  2  \n", matrix.toString());
   }
 
   @Test
   public void shouldAddTwoMatrices() {
-    int[][] numbers1 = { { 1, 1 }, { 2, 2 } };
-    Matrix matrix1 = new Matrix(numbers1);
-    int[][] numbers2 = { { 1, 1 }, { 2, 2 } };
-    Matrix matrix2 = new Matrix(numbers2);
-    int[][] expectedNum = { { 2, 2 }, { 4, 4 } };
-    Matrix expected = new Matrix(expectedNum);
+    Matrix matrix1 = new Matrix(new int[][] { { 1, 1 }, { 2, 2 } });
+    Matrix matrix2 = new Matrix(new int[][] { { 1, 1 }, { 2, 2 } });
+    Matrix expected = new Matrix(new int[][] { { 2, 2 }, { 4, 4 } });
     assertArrayEquals(expected.getMatrix(), matrix1.add(matrix2).getMatrix());
     assertEquals(expected, matrix1.add(matrix2));
   }
 
   @Test
   public void shouldSubtractTwoMatrices() {
-    int[][] numbers1 = { { 1, 1 }, { 2, 2 } };
-    Matrix matrix1 = new Matrix(numbers1);
-
-    int[][] numbers2 = { { 1, 1 }, { 2, 2 } };
-    Matrix matrix2 = new Matrix(numbers2);
-    int[][] expectedNum = { { 0, 0 }, { 0, 0 } };
-    Matrix expected = new Matrix(expectedNum);
-
+    Matrix matrix1 = new Matrix(new int[][] { { 1, 1 }, { 2, 2 } });
+    Matrix matrix2 = new Matrix(new int[][] { { 1, 1 }, { 2, 2 } });
+    Matrix expected = new Matrix(new int[][] { { 0, 0 }, { 0, 0 } });
     assertArrayEquals(
       expected.getMatrix(),
       matrix1.subtract(matrix2).getMatrix()
@@ -58,13 +47,9 @@ public class MatrixTest {
 
   @Test
   public void shouldMultiplyMatrices() {
-    int[][] numbers1 = { { 1, 1 }, { 2, 2 } };
-    Matrix matrix1 = new Matrix(numbers1);
-
-    int[][] numbers2 = { { 1, 1 }, { 2, 2 } };
-    Matrix matrix2 = new Matrix(numbers2);
-    int[][] expectedNum = { { 3, 3 }, { 6, 6 } };
-    Matrix expected = new Matrix(expectedNum);
+    Matrix matrix1 = new Matrix(new int[][] { { 1, 1 }, { 2, 2 } });
+    Matrix matrix2 = new Matrix(new int[][] { { 1, 1 }, { 2, 2 } });
+    Matrix expected = new Matrix(new int[][] { { 3, 3 }, { 6, 6 } });
     assertArrayEquals(
       expected.getMatrix(),
       matrix1.multiply(matrix2).getMatrix()
@@ -74,10 +59,8 @@ public class MatrixTest {
 
   @Test
   public void shouldGiveNullIfMultiplicationIsNotPossible() {
-    int[][] numbers1 = { { 1, 1 }, { 2, 2 } };
-    Matrix matrix1 = new Matrix(numbers1);
-    int[][] numbers2 = { { 1 } };
-    Matrix matrix2 = new Matrix(numbers2);
+    Matrix matrix1 = new Matrix(new int[][] { { 1, 1 }, { 2, 2 } });
+    Matrix matrix2 = new Matrix(new int[][] { { 1 } });
     assertNull(matrix1.multiply(matrix2));
   }
 

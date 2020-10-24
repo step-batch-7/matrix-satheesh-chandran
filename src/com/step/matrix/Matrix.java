@@ -71,7 +71,8 @@ class Matrix {
     return new Matrix(result);
   }
 
-  public StringBuilder display() {
+  @Override
+  public String toString() {
     StringBuilder builder = new StringBuilder();
     for (int row = 0; row < this.rowCount; row++) {
       for (int column = 0; column < this.colCount; column++) {
@@ -79,7 +80,7 @@ class Matrix {
       }
       builder.append("\n");
     }
-    return builder;
+    return builder.toString();
   }
 
   private Matrix createMatrix(int rowCount) {
