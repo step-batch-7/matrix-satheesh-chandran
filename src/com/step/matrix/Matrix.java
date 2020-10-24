@@ -16,6 +16,10 @@ class Matrix {
     }
   }
 
+  private boolean isSameDimensions(Matrix other) {
+    return this.rowCount == other.rowCount && this.colCount == other.colCount;
+  }
+
   public int[][] getMatrix() {
     int[][] parent = this.matrix.clone();
     for (int index = 0; index < parent.length; index++) {
@@ -25,9 +29,7 @@ class Matrix {
   }
 
   public Matrix add(Matrix other) {
-    boolean isDimensionsMatch =
-      this.rowCount == other.rowCount && this.colCount == other.colCount;
-    if (!isDimensionsMatch) {
+    if (!this.isSameDimensions(other)) {
       return null;
     }
     int result[][] = new int[this.rowCount][this.colCount];
@@ -41,9 +43,7 @@ class Matrix {
   }
 
   public Matrix subtract(Matrix other) {
-    boolean isDimensionsMatch =
-      this.rowCount == other.rowCount && this.colCount == other.colCount;
-    if (!isDimensionsMatch) {
+    if (!this.isSameDimensions(other)) {
       return null;
     }
     int result[][] = new int[this.rowCount][this.colCount];
@@ -105,25 +105,23 @@ class Matrix {
     return this.det;
   }
 
+  private boolean deepEquals(Matrix other) {
+    for (int rowCount = 0; rowCount < this.rowCount; rowCount++) {
+      for (int colCount = 0; colCount < this.colCount; colCount++) {
+        boolean isElementEqual =
+          this.matrix[rowCount][colCount] == other.matrix[rowCount][colCount];
+        if (!isElementEqual) return false;
+      }
+    }
+    return true;
+  }
+
   @Override
   public boolean equals(Object other) {
     if (other == this) return true;
     if (!(other instanceof Matrix)) return false;
-
     Matrix matrix = (Matrix) other;
-
-    boolean dimensionsEqual =
-      this.colCount == matrix.colCount && this.rowCount == matrix.rowCount;
-    if (!dimensionsEqual) return false;
-    
-    boolean isEqual = true;
-    for (int rowCount = 0; rowCount < this.rowCount; rowCount++) {
-      for (int colCount = 0; colCount < this.colCount; colCount++) {
-        boolean isElementEqual =
-          this.matrix[rowCount][colCount] == matrix.matrix[rowCount][colCount];
-        isEqual = isEqual && isElementEqual;
-      }
-    }
-    return isEqual;
+    if (!this.isSameDimensions(matrix)) return false;
+    return this.deepEquals(matrix);
   }
 }
